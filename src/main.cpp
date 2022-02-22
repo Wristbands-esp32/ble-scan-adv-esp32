@@ -4,6 +4,7 @@
 #include <BLEScan.h>
 #include <BLEAdvertisedDevice.h>
 #include <BLECast.h>
+#include <string.h>
 
 #ifndef BEACON
 
@@ -16,7 +17,7 @@
     {
         void onResult(BLEAdvertisedDevice advertisedDevice)
         {
-            if (strcmp(advertisedDevice.getName().c_str(), "Radiation") >= 0)
+            if (advertisedDevice.getName().compare("Y2hvY29jaGVzbmV5") == 0)
             {
                 Serial.print(advertisedDevice.getName().c_str());
                 Serial.printf(": %d \n", advertisedDevice.getRSSI());
@@ -46,7 +47,7 @@
 #else
     // define BTLE name
     // CAREFUL: each character eats into your usable adv packet length
-    BLECast bleCast("RadiationBeacon");
+    BLECast bleCast("ESP32-WristbandV4.20");
     
     uint8_t cnt = 0;
     char data[5];
